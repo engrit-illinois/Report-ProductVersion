@@ -129,4 +129,4 @@ Default is `sccmcas.ad.uillinois.edu`.
 # Notes
 - For large collections, this can take a long time. When machines cannot be contacted it takes 20-25 seconds for the query to timeout, occasionally hanging for much longer. Successful queries may still take a while.
 - To be the most thorough, the script queries WMI for both `Win32_Product` and `Win32Reg_AddRemovePrograms`, as these can both provide distinct sets of results.  
-- By mseng3
+- By mseng3. See my other projects here: https://github.com/mmseng/code-compendium.
