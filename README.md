@@ -4,17 +4,16 @@ This script takes an SCCM collection name, the name of an application (product),
 Must be run on a computer with the SCCM admin console installed if using `-Collection` parameter.  
 
 # Usage
-1. Download `Report-ProductVersion.psm1`
-2. Open a PowerShell console as the user which has SCCM permissions (probably your regular NetID and NOT your SU account).
-3. Import the module: `Import-Module .\Report-ProductVersion.psm1`
-4. Run the command:
+1. Download `Report-ProductVersion.psm1` to `$HOME\Documents\WindowsPowerShell\Modules\Report-ProductVersion\Report-ProductVersion.psm1`.
+2. Open a PowerShell console as the user which has SCCM permissions (For Engineering, this is probably your regular NetID and NOT your SU account).
+    - If this account differs from your regular account, you may need to explicitly import the module: `Import-Module "c:\path\to\Report-ProductVersion.psm1`
+3. Run the command:
   - e.g. `Report-ProductVersion -Collection "UIUC-ENGR-ESPL" -Product "*acrobat*" -Log "c:\espl-acrobat.log" -Csv "c:\espl-acrobat.csv"`
   - e.g. `Report-ProductVersion -Computers "gelib-4e-01","eh-406b1-*","mel-1001-01" -Product "*acrobat*"`
 
 # Example
 ```powershell
-mseng3@ENGRIT-MMS-RDP C:\> Import-Module .\Report-ProductVersion.psm1
-mseng3@ENGRIT-MMS-RDP C:\> Report-ProductVersion -Collection "UIUC-ENGR-ESPL" -Product "*acrobat*" -Log "c:\epsl-acrobat.log" -Csv "c:\espl-acrobat.csv"
+C:\> Report-ProductVersion -Collection "UIUC-ENGR-ESPL" -Product "*acrobat*" -Log "c:\epsl-acrobat.log" -Csv "c:\espl-acrobat.csv"
 
 Computers in collection "UIUC-ENGR-ESPL":
 ESPL-114-01
@@ -83,7 +82,7 @@ ESPL-MACH-02   Adobe Acrobat DC                19.012.20034
 
 EOF
 
-mseng3@ENGRIT-MMS-RDP C:\>
+C:\>
 ```
 
 # Parameters
