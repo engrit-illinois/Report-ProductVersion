@@ -37,9 +37,11 @@ function Report-ProductVersion {
 
 	)
 
-	function log($msg) {
+	function log($msg, $nots=$false) {
 		$ts = Get-Date -Format "yyyy-MM-dd HH:mm:ss:ffff"
-		$msg = "[$ts] $msg"
+		if(-not $nots) {
+			$msg = "[$ts] $msg"
+		}
 		Write-Host $msg
 		if($Log) {
 			Write-Output $msg | Out-File $Log -Append
@@ -188,7 +190,8 @@ function Report-ProductVersion {
 			#log "    Done."
 			
 			if($LogIncrementalProgress) {
-				log "    $(($data | Format-Table | Out-String).trim())"
+				log "Current results:"
+				log "    $(($data | Format-Table | Out-String).trim())" -nots
 			}
 		}
 		
