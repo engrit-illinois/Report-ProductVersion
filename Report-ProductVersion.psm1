@@ -87,8 +87,6 @@ function Report-ProductVersion {
 					$compNames += @($result)
 				}
 			}
-			$list = Get-CompNameList $compNames
-			log "Found $($compNames.count) computers in given array: $list." -l 1
 		}
 		elseif($Collection) {
 			log "List was given as a collection. Getting members of collection: `"$Collection`"..." -l 1 -v 1
@@ -107,10 +105,7 @@ function Report-ProductVersion {
 					# Sort by active status, with active clients first, just in case inactive clients might come online later
 					# Then sort by name, just for funsies
 					$comps = $comps | Sort -Property @{Expression = {$_.ClientActiveStatus}; Descending = $true}, @{Expression = {$_.Name}; Descending = $false}
-					
 					$compNames = $comps.Name
-					$list = Get-CompNameList $compNames
-					log "Found $($compNames.count) computers in `"$Collection`" collection: $list." -l 1
 				}
 			}
 		}
@@ -118,9 +113,13 @@ function Report-ProductVersion {
 			log "Somehow neither the -Computers, nor -Collection parameter was specified!" -l 1
 		}
 		
+		$compNames = $compNames | Sort
+		$list = Get-CompNameList $compNames
+		log "Found $($compNames.count) computers in total: $list." -l 1
+		
 		log "Done getting list of computer names." -v 2
 		
-		$compNames | Sort
+		$compNames
 	}
 
 	function Get-Data($comps) {
