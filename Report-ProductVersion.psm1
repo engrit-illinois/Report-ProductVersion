@@ -82,17 +82,9 @@ function Report-ProductVersion {
 			log "List was given as an array." -l 1 -v 1
 			$compNames = @()
 			foreach($comp in @($Computers)) {
-				$withoutAsterisk = $comp.Replace("*","")
-				if($withoutAsterisk -eq $comp) {
-					# This comp name has no asterisk, take it at face value
-					$compNames += @($comp)
-				}
-				else {
-					# This comp name has an asterisk, search AD for matching names
-					$compResults = (Get-ADComputer -Filter "Name -like '$comp'" | Select Name).Name
-					foreach($result in @($compResults)) {
-						$compNames += @($result)
-					}
+				$compResults = (Get-ADComputer -Filter "Name -like '$comp'" | Select Name).Name
+				foreach($result in @($compResults)) {
+					$compNames += @($result)
 				}
 			}
 			$list = Get-CompNameList $compNames
@@ -128,7 +120,7 @@ function Report-ProductVersion {
 		
 		log "Done getting list of computer names." -v 2
 		
-		$compNames
+		$compNames | Sort
 	}
 
 	function Get-Data($comps) {
