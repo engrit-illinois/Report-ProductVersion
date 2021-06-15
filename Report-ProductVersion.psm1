@@ -37,7 +37,12 @@ function Report-ProductVersion {
 
 	)
 
-	function log($msg, $nots=$false) {
+	function log {
+		param(
+			[string]$msg,
+			[switch]$nots
+		)
+		
 		$ts = Get-Date -Format "yyyy-MM-dd HH:mm:ss:ffff"
 		if(-not $nots) {
 			$msg = "[$ts] $msg"
