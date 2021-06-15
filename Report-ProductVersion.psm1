@@ -39,7 +39,7 @@ function Report-ProductVersion {
 
 	function log($msg) {
 		$ts = Get-Date -Format "yyyy-MM-dd HH:mm:ss:ffff"
-		$msg = "[$timestamp] $msg"
+		$msg = "[$ts] $msg"
 		Write-Host $msg
 		if($Log) {
 			Write-Output $msg | Out-File $Log -Append
