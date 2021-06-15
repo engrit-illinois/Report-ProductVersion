@@ -83,7 +83,7 @@ function Report-ProductVersion {
 			$compNames = @()
 			foreach($comp in @($Computers)) {
 				$compResults = (Get-ADComputer -Filter "Name -like '$comp'" | Select Name).Name
-				foreach($result in @($compResults)) {
+				foreach($result in $compResults) {
 					$compNames += @($result)
 				}
 			}
