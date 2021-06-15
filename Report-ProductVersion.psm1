@@ -196,7 +196,7 @@ function Report-ProductVersion {
 			
 			if($LogIncrementalProgress) {
 				log "Current results:"
-				log "    $(($data | Format-Table | Out-String).trim())" -nots
+				log ($data | Format-Table | Out-String) -nots
 			}
 		}
 		
