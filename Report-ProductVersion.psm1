@@ -140,8 +140,8 @@ function Report-ProductVersion {
 			$results = "unknown"
 			$productWMI = $Product.Replace("*","%")
 			try {
-				$result1 = Get-WmiObject -Query "select * from win32_product where name like '$productWMI'" -computername $comp -ErrorAction Stop
-				$result2 = Get-WmiObject -Class "Win32Reg_AddRemovePrograms" -Computername $comp -ErrorAction Stop | Where { $_.DisplayName -like $Product }
+				$result1 = Get-CimInstance -Query "select * from win32_product where name like '$productWMI'" -ComputerName $comp -ErrorAction Stop
+				$result2 = Get-CimInstance -Class "Win32Reg_AddRemovePrograms" -ComputerName $comp -ErrorAction Stop | Where { $_.DisplayName -like $Product }
 			}
 			catch [System.Runtime.InteropServices.COMException] {
 				if($_.Exception.Message.trim() -eq "The RPC server is unavailable.") {
