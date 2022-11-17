@@ -4,7 +4,7 @@ This script takes an SCCM collection name, the name of an application (product),
 Must be run on a computer with the SCCM admin console installed if using `-Collection` parameter.  
 
 # Usage
-1. Download `Report-ProductVersion.psm1` to `$HOME\Documents\WindowsPowerShell\Modules\Report-ProductVersion\Report-ProductVersion.psm1`.
+1. Download `Report-ProductVersion.psm1` to the appropriate subdirectory of your PowerShell [modules directory](https://github.com/engrit-illinois/how-to-install-a-custom-powershell-module).
 2. Open a PowerShell console as the user which has SCCM permissions (For Engineering, this is probably your regular NetID and NOT your SU account).
     - If this account differs from your regular account, you may need to explicitly import the module: `Import-Module "c:\path\to\Report-ProductVersion.psm1`
 3. Run the command:
